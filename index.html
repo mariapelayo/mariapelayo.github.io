@@ -128,7 +128,7 @@ section{position:relative}
 .hero-top{display:flex;justify-content:space-between;gap:24px;flex-wrap:wrap;
   font-size:.9rem;letter-spacing:.04em;color:var(--ink-70)}
 .hero-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(0,.85fr);
-  gap:clamp(28px,5vw,72px);align-items:end;margin:clamp(36px,7vh,84px) 0}
+  gap:clamp(28px,5vw,72px);align-items:end;margin:clamp(26px,4.5vh,60px) 0}
 .hero-name{font-size:.95rem;letter-spacing:.1em;margin-bottom:clamp(16px,2.4vw,30px)}
 .hero h1{margin-bottom:clamp(22px,3vw,38px)}
 .hero h1 em{font-style:italic;color:var(--terra)}
@@ -268,7 +268,7 @@ footer{background:var(--plum);color:rgba(245,240,230,.6);padding-bottom:clamp(40
 /* ---------- responsive ---------- */
 @media (max-width:1000px){
   .hero-grid{grid-template-columns:1fr;align-items:start}
-  .hero-portrait{max-width:340px;aspect-ratio:4/5}
+  .hero-portrait{max-width:260px;aspect-ratio:4/5}
   .hero-stats{grid-template-columns:repeat(2,minmax(0,1fr));gap:22px}
   .case-grid,.job,.edu-main,.personal-grid,.contact-grid,.found-row,.tools{grid-template-columns:1fr}
   .job:nth-child(even) .job-media{order:0}
@@ -278,8 +278,14 @@ footer{background:var(--plum);color:rgba(245,240,230,.6);padding-bottom:clamp(40
   .stage{width:100%}
   .brands-inner{gap:18px}
 }
+@media (max-width:820px){
+  /* on a phone the headline and the proof win the first screen; the portrait
+     would push them under the fold, so it sits out until there is room */
+  .hero-portrait{display:none}
+}
 @media (max-width:560px){
-  .hero-stats{grid-template-columns:1fr}
+  .hero-stats{gap:16px 20px}
+  .stat b{font-size:1.55rem}
   .cities{grid-template-columns:1fr}
   .links a{font-size:1.15rem}
 }
@@ -321,7 +327,7 @@ footer{background:var(--plum);color:rgba(245,240,230,.6);padding-bottom:clamp(40
       <div class="ph">
         <b>Professional portrait</b>
         <span>Head and shoulders, natural light, plain warm background. Direct look to camera, confident and approachable. Not a studio corporate headshot, not a fashion shot.</span>
-        <code>images/portrait-maria.jpg / .png · 4:5 · min 1200×1500</code>
+        <code>images/portrait-maria.jpg or .png · 4:5 · min 1200×1500</code>
       </div>
     </figure>
   </div>
@@ -418,15 +424,12 @@ footer{background:var(--plum);color:rgba(245,240,230,.6);padding-bottom:clamp(40
 
   <article class="job">
     <figure class="job-media" style="margin:0">
-      <video class="shot par job-video" poster="images/exp-wpp-activation.jpg" data-base="images/exp-wpp-activation"
-             muted loop playsinline preload="metadata"
-             aria-label="Brand activation built and running, with the public inside the space">
-        <source src="images/exp-wpp-activation.mp4" type="video/mp4">
-      </video>
+      <img class="shot par" src="images/exp-wpp-activation.jpg" data-base="images/exp-wpp-activation"
+           loading="lazy" alt="Brand activation built and running, with the public inside the space">
       <div class="ph">
         <b>Brand activation, wide shot</b>
         <span>The built space with people in it: scale, crowd, production. No client artwork or confidential creative, no posed photos.</span>
-        <code>images/exp-wpp-activation.mp4 or .jpg / .png · 3:2 · min 1800×1200</code>
+        <code>images/exp-wpp-activation.jpg or .png · 3:2 · min 1800×1200</code>
       </div>
     </figure>
     <div>
@@ -447,11 +450,11 @@ footer{background:var(--plum);color:rgba(245,240,230,.6);padding-bottom:clamp(40
 
   <article class="job">
     <figure class="job-media" style="margin:0">
-      <img class="shot par" src="images/exp-omnicom-media.jpg" data-base="images/exp-omnicom-media" alt="Working session reviewing paid media performance">
+      <img class="shot par" src="images/exp-omnicom-media.jpg" data-base="images/exp-omnicom-media" loading="lazy" alt="Working session reviewing paid media performance">
       <div class="ph">
         <b>Media planning at work</b>
         <span>Desk or working session: screens, numbers, notes. Anonymised or generic dashboards only. Never real client data or campaign names.</span>
-        <code>images/exp-omnicom-media.jpg / .png · 3:2 · min 1800×1200</code>
+        <code>images/exp-omnicom-media.jpg or .png · 3:2 · min 1800×1200</code>
       </div>
     </figure>
     <div>
@@ -472,15 +475,12 @@ footer{background:var(--plum);color:rgba(245,240,230,.6);padding-bottom:clamp(40
 
   <article class="job">
     <figure class="job-media" style="margin:0">
-      <video class="shot par job-video" id="cph-video" poster="images/exp-cph-operations.jpg" data-base="images/exp-cph-operations"
-             muted loop playsinline preload="metadata"
-             aria-label="Event build and operations before doors open">
-        <source src="images/exp-cph-operations.mp4" type="video/mp4">
-      </video>
+      <img class="shot par" src="images/exp-cph-operations.jpg" data-base="images/exp-cph-operations"
+           loading="lazy" alt="Event build and operations before doors open">
       <div class="ph">
         <b>Event operations, backstage</b>
         <span>Build, load-in, run sheets, radios, crew at work before doors open. Never a runway, a front row or a fashion look.</span>
-        <code>images/exp-cph-operations.mp4 or .jpg / .png · 3:2 · min 1800×1200</code>
+        <code>images/exp-cph-operations.jpg or .png · 3:2 · min 1800×1200</code>
       </div>
     </figure>
     <div>
@@ -721,25 +721,6 @@ footer{background:var(--plum);color:rgba(245,240,230,.6);padding-bottom:clamp(40
         if (url) img.src = url; else img.style.display = 'none';
       });
     });
-  });
-
-  document.querySelectorAll('video[data-base]').forEach(function(v){
-    resolveImage(v.getAttribute('data-base'), function(url){
-      if (url) v.poster = url; else v.removeAttribute('poster');
-    });
-  });
-
-  /* ---- videos: hide if the file isn't there, play only while visible ---- */
-  document.querySelectorAll('.job-video').forEach(function(vid){
-    var src = vid.querySelector('source');
-    if (src) src.addEventListener('error', function(){ vid.style.display = 'none'; });
-    if (!reduced && 'IntersectionObserver' in window){
-      new IntersectionObserver(function(entries){
-        entries.forEach(function(e){
-          if (e.isIntersecting){ vid.play().catch(function(){}); } else { vid.pause(); }
-        });
-      }, {threshold:.25}).observe(vid);
-    }
   });
 
   if (reduced || !hasGSAP) return;
